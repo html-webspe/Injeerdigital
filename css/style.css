@@ -172,6 +172,13 @@ h6 {
   padding: 0 15px;
 }
 
+.container-1 {
+  padding: 0 15px;
+  width: 100%;
+  max-width: 1500px;
+  margin: 0 auto;
+}
+
 /*
 (i) Стилі будуть застосовуватись до
 всіх класів, що містять *__container
@@ -904,7 +911,7 @@ h6 {
 }
 
 .faq__item {
-  padding: 30px 36px 30px 0;
+  padding: 30px 20px 30px 0;
   border-top: 1px solid #000;
 }
 
@@ -973,7 +980,6 @@ h6 {
   line-height: 1.3333333333;
   font-weight: 400;
   padding-top: 13px;
-  padding-right: 80px;
   max-width: 940px;
 }
 
@@ -1061,6 +1067,14 @@ h6 {
     -webkit-box-pack: justify;
         -ms-flex-pack: justify;
             justify-content: space-between;
+  }
+
+  .faq__item {
+    padding-right: 36px;
+  }
+
+  .faq__item-body {
+    padding-right: 80px;
   }
 }
 
@@ -1264,6 +1278,10 @@ h6 {
   }
 
   .container {
+    padding: 0 30px;
+  }
+
+  .container-1 {
     padding: 0 30px;
   }
 
