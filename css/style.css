@@ -1548,17 +1548,11 @@ body::after {
 }
 
 .service-hero__inner {
-  padding-top: 82px;
-  padding-bottom: 120px;
   background-color: #B9A9FB;
 }
 
 .service-hero__title {
   text-align: center;
-}
-
-.service-hero .marquee {
-  bottom: 245px;
 }
 
 .advantages {
@@ -2095,8 +2089,10 @@ body::after {
   -webkit-box-align: start;
       -ms-flex-align: start;
           align-items: flex-start;
-  padding-top: 96px;
-  padding-bottom: 96px;
+}
+
+.blog-hero__specialization {
+  padding: 0;
 }
 
 .articles {
@@ -2968,6 +2964,10 @@ body::after {
     font-size: 32px;
   }
 
+  .service-hero .marquee {
+    bottom: 245px;
+  }
+
   .advantages__item,
   .stages__item {
     display: -webkit-box;
@@ -3189,6 +3189,11 @@ body::after {
             flex: 0 1 calc(50% - 40px);
   }
 
+  .service-hero__inner {
+    padding-top: 82px;
+    padding-bottom: 120px;
+  }
+
   .advantages {
     margin-bottom: 120px;
   }
@@ -3223,6 +3228,11 @@ body::after {
   }
 
   .reviews-hero__inner {
+    padding-top: 96px;
+    padding-bottom: 96px;
+  }
+
+  .blog-hero__inner {
     padding-top: 96px;
     padding-bottom: 96px;
   }
@@ -3339,6 +3349,11 @@ body::after {
     padding-bottom: 96px;
   }
 
+  .blog-hero__inner {
+    padding-top: 96px;
+    padding-bottom: 96px;
+  }
+
   .preview-articles {
     display: block;
   }
@@ -3353,6 +3368,10 @@ body::after {
 }
 
 @media (max-width: 61.99875em) {
+  .form-service {
+    display: none;
+  }
+
   .hero__btn {
     padding: 10px 24px;
   }
