@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<title>ServicePage</title>
+	<meta charset="UTF-8">
+	<meta name="format-detection" content="telephone=no">
+	<!-- <style>body{opacity: 0;}</style> -->
+	<link rel="stylesheet" href="css/style.min.css?_v=20230804170744">
+	<link rel="shortcut icon" href="favicon.ico">
+	<!-- <meta name="robots" content="noindex, nofollow"> -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+	<div class="wrapper">
+		<header class="header">
+			<div class="header__body">
+				<a href="/" class="header__logo logo">
+					<svg xmlns="http://www.w3.org/2000/svg" width="117" height="40" viewBox="0 0 117 40" fill="none">
+						<path d="M36.9297 18.0293V5.45068H39.6994V18.0293H36.9297Z" fill="white" />
+						<path d="M41.21 18.0293V5.45068H44.0636L51.3656 13.8364V5.45068H54.2193V18.0293H51.2817L43.9797 9.64357V18.0293H41.21Z" fill="white" />
+						<path d="M57.9124 18.0291C57.4088 18.0291 56.9891 17.9453 56.5695 17.6937C56.1498 17.4421 55.8141 17.1067 55.5623 16.7713C55.3105 16.352 55.2266 15.9327 55.2266 15.5134V13.9201H57.9963V15.4295H65.3822V5.61816H68.2359V15.5972C68.2359 16.1004 68.152 16.5197 67.9002 16.8551C67.6484 17.2744 67.3126 17.5259 66.893 17.7775C66.4733 18.0291 66.0537 18.113 65.5501 18.113H57.9124V18.0291Z" fill="white" />
+						<path d="M70.2505 18.0293V5.45068H82.2526V8.13409H73.1041V10.3144H80.4901V12.9979H73.1041V15.1781H82.2526V17.8616H70.2505V18.0293Z" fill="white" />
+						<path d="M84.0151 18.0293V5.45068H96.0173V8.13409H86.8688V10.3144H94.2547V12.9979H86.8688V15.1781H96.0173V17.8616H84.0151V18.0293Z" fill="white" />
+						<path d="M97.7798 18.0293V5.45068H108.103C108.607 5.45068 109.027 5.53451 109.446 5.78608C109.866 6.03766 110.202 6.37312 110.453 6.70855C110.705 7.12784 110.789 7.54712 110.789 7.96641V11.2368C110.789 11.74 110.705 12.1593 110.453 12.4947C110.202 12.914 109.866 13.1656 109.446 13.4172C109.027 13.6687 108.607 13.7526 108.103 13.7526H100.633V17.8616H97.7798V18.0293ZM107.935 11.153V8.13409H100.55V11.153H107.935ZM107.852 18.0293L104.075 13.6687H107.768L110.789 17.1069V18.0293H107.852Z" fill="white" />
+						<path d="M37.3491 33.375V20.7964H47.6726C48.1762 20.7964 48.5959 20.8802 49.0155 21.1318C49.4352 21.3834 49.7709 21.635 50.0227 22.0543C50.2745 22.4735 50.3584 22.8928 50.3584 23.3121V30.6916C50.3584 31.1947 50.2745 31.614 50.0227 31.9494C49.7709 32.2849 49.4352 32.6203 49.0155 32.8719C48.5959 33.1234 48.1762 33.2073 47.6726 33.2073H37.3491V33.375ZM47.5048 30.6077V23.4798H40.1188V30.6077H47.5048Z" fill="white" />
+						<path d="M51.8696 33.375V20.7964H54.6394V33.375H51.8696Z" fill="white" />
+						<path d="M58.8357 33.3753C58.3321 33.3753 57.9125 33.2914 57.4928 33.0398C57.0731 32.7883 56.7374 32.4528 56.4856 32.1174C56.2338 31.6981 56.1499 31.2788 56.1499 30.8595V23.4801C56.1499 22.9769 56.2338 22.5577 56.4856 22.2222C56.7374 21.8029 57.0731 21.5513 57.4928 21.2998C57.9125 21.0482 58.3321 20.9644 58.8357 20.9644H66.4734C66.977 20.9644 67.3967 21.0482 67.8163 21.2998C68.236 21.5513 68.5717 21.8029 68.8235 22.2222C69.0753 22.6415 69.1592 23.0608 69.1592 23.4801V24.6541H66.3056V23.6478H58.9196V30.7757H66.3056V28.9308H63.4519V26.2474H69.0753V31.0273C69.0753 31.5304 68.9914 31.9497 68.7396 32.2851C68.4878 32.6206 68.1521 32.956 67.7324 33.2076C67.3127 33.4591 66.8931 33.543 66.3895 33.543H58.8357V33.3753Z" fill="white" />
+						<path d="M70.6699 33.375V20.7964H73.4396V33.375H70.6699Z" fill="white" />
+						<path d="M79.7345 33.3752V23.5638H74.6147V20.8804H87.6241V23.5638H82.5043V33.3752H79.7345Z" fill="white" />
+						<path d="M89.0508 23.3961C89.0508 22.893 89.1347 22.4737 89.3865 22.1382C89.6383 21.7189 89.974 21.4674 90.3937 21.2158C90.8133 20.9642 91.233 20.8804 91.7366 20.8804H99.3743C99.8779 20.8804 100.298 20.9642 100.717 21.2158C101.137 21.4674 101.473 21.7189 101.724 22.1382C101.976 22.5575 102.06 22.9768 102.06 23.3961V33.3752H99.2065V29.35H91.8205V33.3752H89.0508V23.3961ZM99.2065 26.5827V23.48H91.8205V26.5827H99.2065Z" fill="white" />
+						<path d="M104.075 33.375V20.7964H106.844V30.6916H117V33.375H104.075Z" fill="white" />
+						<path d="M27.1097 20.461C24.7597 24.57 20.3113 27.2535 15.2755 27.2535C14.2683 27.2535 13.1772 27.1696 12.2539 26.918V33.4589C12.17 33.4589 4.868 25.9118 1.84648 19.5386C0.671446 21.5512 0 23.8992 0 26.331C0 33.8782 6.12697 39.9998 13.6808 39.9998C19.3042 39.9998 28.7884 37.3164 28.4527 24.9893C28.4527 23.6476 27.9491 22.1381 27.1097 20.461Z" fill="#B9A9FB" />
+						<path d="M13.681 12.7463C14.6882 12.7463 15.7793 12.8302 16.7025 13.0818V6.54089C16.7864 6.54089 24.0884 14.0881 27.11 20.4612C28.285 18.4486 28.9564 16.1007 28.9564 13.6688C28.9564 6.1216 22.8295 0 15.2757 0C9.65229 0 0.168071 2.68341 0.503795 15.0105C0.503795 16.3522 1.00738 17.9455 1.84669 19.6227C4.19676 15.4298 8.64511 12.7463 13.681 12.7463Z" fill="#B153E0" />
+						<path d="M12.2541 33.4593V26.9184C13.2613 27.17 14.2685 27.2539 15.2757 27.2539C20.3115 27.2539 24.7599 24.4865 27.1099 20.4614C24.0884 14.0043 16.7864 6.54102 16.7025 6.54102V13.0819C15.6953 12.8303 14.6881 12.7464 13.681 12.7464C8.6451 12.7464 4.19675 15.5138 1.84668 19.5389C4.8682 25.996 12.1702 33.4593 12.2541 33.4593Z" fill="#DBFF73" />
+					</svg>
+				</a>
+				<div class="header__menu menu">
+					<button type="button" class="menu__icon icon-menu"><span></span></button>
+					<nav class="menu__navigation">
+						<ul class="menu__list">
+							<li class="menu__item">
+								<a href="#" class="menu__link">Послуги</a>
+								<span class="menu__arrow"></span>
+
+								<ul class="sub-menu">
+									<li><a href="">Портфоліо</a></li>
+									<li><a href="">Портфоліо</a></li>
+									<li><a href="">Портфоліо</a></li>
+								</ul>
+							</li>
+							<li class="menu__item">
+								<a href="" class="menu__link">Портфоліо</a>
+							</li>
+							<li class="menu__item">
+								<a href="" class="menu__link">Відгуки</a>
+							</li>
+							<li class="menu__item">
+								<a href="" class="menu__link">Контакти</a>
+							</li>
+							<li class="menu__item">
+								<a href="" class="menu__link">Блог</a>
+							</li>
+						</ul>
+
+						<div data-da=".header__body, 992, last" class="header__action">
+							<button type="button" data-modal=".modal-callback" class="header__btn btn btn-green">Зв’язатись з нами</button>
+							<div class="header__lang lang">
+								<div class="lang__item current">UA</div>
+								<div class="lang__item">EN</div>
+								<div class="lang__item">PL</div>
+							</div>
+						</div>
+
+					</nav>
+				</div>
+			</div>
+		</header>
+		<main class="main-service">
+			<section class="section service-hero hero">
+				<div class="hero__inner service-hero__inner">
+					<h1 class="title service-hero__title">Контекстна реклама Google Ads</h1>
+				</div>
+				<form action="" class="form form-service">
+					<fieldset class="form__fieldset">
+						<div class="form__row">
+							<input autocomplete="off" type="text" placeholder="Ваше ім’я" class="form__input input">
+							<span class="form__row-icon">
+								<svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24" fill="none">
+									<path d="M20.5 18.5C20.5 20.0294 17.0714 21 12.5 21C7.92857 21 4.5 20.0294 4.5 18.5C4.5 16.2692 8.5 15 12.5 15C16.5 15 20.5 16.5 20.5 18.5Z" stroke="#A9A9A9" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+									<path d="M12.5 12C14.9853 12 17 9.98528 17 7.5C17 5.01472 14.9853 3 12.5 3C10.0147 3 8 5.01472 8 7.5C8 9.98528 10.0147 12 12.5 12Z" stroke="#A9A9A9" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+								</svg>
+							</span>
+						</div>
+						<div class="form__row">
+							<input autocomplete="off" type="text" placeholder="Email" class="form__input input">
+							<span class="form__row-icon">
+								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+									<path d="M14.6 19.6C13.8 19.9 12.9 20 12 20C7.6 20 4 16.4 4 12C4 7.6 7.6 4 12 4C16.4 4 20 7.6 20 12C20 12.5 20 12.2 20 12.5C19.5 16.5 16.6388 16.6433 15.5 15.2C14.6148 14.0781 15.1 12.5 16.2 9.3M13.0539 8.33156C14.7871 9.05394 15.4859 11.3338 14.6148 13.4238C13.7437 15.5139 11.6326 16.6225 9.89937 15.9002C8.16619 15.1778 7.46734 12.8979 8.33844 10.8079C9.20954 8.71787 11.3207 7.60918 13.0539 8.33156Z" stroke="#A9A9A9" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+								</svg>
+							</span>
+						</div>
+						<div class="form__row form__row-button">
+							<button type="submit" class="btn btn-primery">Замовити консультацію</button>
+						</div>
+					</fieldset>
+				</form>
+				<div class="marquee">
+					<div class="marquee-line marquee-line-top"></div>
+					<div class="marquee-line marquee-line-bottom"></div>
+				</div>
+			</section>
+			<section class="section advantages">
+				<div class="container">
+					<h2 class="title advantages__title">Переваги google ads</h2>
+
+					<div class="advantages__list">
+						<div class="advantages__item item-advantages">
+							<div class="item-advantages__group">
+								<span>01</span>
+								<h3>Релевантність</h3>
+							</div>
+							<div class="item-advantages__text">
+								Реклама показується лише тим користувачам, які шукають конкретні товари чи послуги, що пов'язані з вашим сайтом. Це дозволяє досягти максимальної релевантності рекламного оголошення та підвищити ефективність рекламної кампанії.
+							</div>
+						</div>
+						<div class="advantages__item item-advantages">
+							<div class="item-advantages__group">
+								<span>02</span>
+								<h3>Гнучкість</h3>
+							</div>
+							<div class="item-advantages__text">
+								Можливість налаштування бюджету рекламної кампанії та керування нею в режимі реального часу, що дозволяє змінювати налаштування та визначати найефективніші стратегії для досягнення мети.
+							</div>
+						</div>
+						<div class="advantages__item item-advantages">
+							<div class="item-advantages__group">
+								<span>03</span>
+								<h3>Платіж за результатом</h3>
+							</div>
+							<div class="item-advantages__text">
+								Рекламодавець платить тільки за кліки на рекламне оголошення, що дозволяє оптимізувати бюджет та ефективність кампанії.
+							</div>
+						</div>
+						<div class="advantages__item item-advantages">
+							<div class="item-advantages__group">
+								<span>04</span>
+								<h3>Масштабованість</h3>
+							</div>
+							<div class="item-advantages__text">
+								Контекстна реклама Google Ads дозволяє розміщувати рекламу на мільйонах сайтів, які підтримують Google AdSense, що дає можливість досягти великої аудиторії.
+							</div>
+						</div>
+						<div class="advantages__item item-advantages">
+							<div class="item-advantages__group">
+								<span>05</span>
+								<h3>Аналітика</h3>
+							</div>
+							<div class="item-advantages__text">
+								Google Ads надає детальну статистику та аналіз ефективності рекламної кампанії, що дозволяє відстежувати результати та вносити необхідні зміни для покращення ефективності кампанії.
+							</div>
+						</div>
+						<div class="advantages__item item-advantages">
+							<div class="item-advantages__group">
+								<span>06</span>
+								<h3>Таргетинг</h3>
+							</div>
+							<div class="item-advantages__text">
+								Можливість вибрати таргетинг для вашої рекламної кампанії на основі різних параметрів, таких як місцезнаходження, вік, стать, інтереси тощо, що дозволяє досягти максимальної ефективності рекламної кампанії та залучити цільову аудиторію.
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+			<section class="section callback">
+				<div class="marquee-line marquee-line-top"></div>
+				<div class="container callback__container">
+
+					<div class="callback__body">
+						<h2 class="title callback__title">ваші ідеї = наші&nbsp;рішення</h2>
+
+						<div class="callback__btns">
+							<a href="#" class="btn btn-white callback__btn">Зв’язатись з нами</a>
+							<a href="#" class="btn btn-dark callback__btn">Замовити консультацію</a>
+						</div>
+					</div>
+
+				</div>
+				<div class="marquee-line marquee-line-bottom"></div>
+			</section>
+			<section class="section stages">
+				<div class="container">
+					<h2 class="title stages__title">Етапи роботи</h2>
+
+					<div class="stages__list">
+						<div class="stages__item item-stages">
+							<div class="item-stages__group">
+								<span>01</span>
+								<h3>Визначаємо цілі рекламної кампанії:</h3>
+							</div>
+							<div class="item-stages__text">
+								Першим кроком при роботі з контекстною рекламою є визначення цілей, які потрібно досягти. Цілі можуть бути різними, такими як збільшення продажів, залучення нових клієнтів або підвищення бренду.
+							</div>
+						</div>
+						<div class="stages__item item-stages">
+							<div class="item-stages__group">
+								<span>02</span>
+								<h3>Вибір ключових слів:</h3>
+							</div>
+							<div class="item-stages__text">
+								Для досягнення цілей рекламної кампанії необхідно вибрати ключові слова, які відповідають вашому бізнесу та тим продуктам чи послугам, які ви пропонуєте. Ці ключові слова допоможуть залучити до вашого сайту цільову аудиторію.
+							</div>
+						</div>
+						<div class="stages__item item-stages">
+							<div class="item-stages__group">
+								<span>03</span>
+								<h3>Створення рекламних оголошень:</h3>
+							</div>
+							<div class="item-stages__text">
+								Для залучення уваги користувачів до вашої рекламної кампанії потрібно створити ефективні рекламні оголошення. Вони повинні бути чіткими, привабливими та містити важливу інформацію про ваші товари чи послуги.
+							</div>
+						</div>
+						<div class="stages__item item-stages">
+							<div class="item-stages__group">
+								<span>04</span>
+								<h3>Налаштування таргетингу:</h3>
+							</div>
+							<div class="item-stages__text">
+								Для максимальної ефективності рекламної кампанії необхідно налаштувати таргетинг. Ми налаштовуємо певні параметри, такі як місцезнаходження, вік, стать, інтереси тощо, щоб ваша реклама показувалась лише тим користувачам, які мають інтерес до вашого продукту чи послуги.
+							</div>
+						</div>
+						<div class="stages__item item-stages">
+							<div class="item-stages__group">
+								<span>05</span>
+								<h3>Моніторинг та аналіз результатів:</h3>
+							</div>
+							<div class="item-stages__text">
+								Після запуску рекламної кампанії необхідно вести моніторинг та аналізувати результати. Ми використовуємо аналітичні інструменти, щоб зрозуміти, які рекламні оголошення працюють ефективно, виправити можливі помилки, дати рекомендації.
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+			<section class="section info">
+				<div class="container">
+					<h2 class="title info__title">Навіщо мені google ads?</h2>
+					<div class="info__body">
+						<div class="info__text">
+							<p>Контекстна реклама дозволяє показувати рекламу тільки тим користувачам, які шукають конкретні товари чи послуги, пов'язані з тим, що пропонується на вашому сайті. </p>
+							<p>Це дозволяє досягти максимальної релевантності рекламного оголошення та підвищити ефективність рекламної кампанії.</p>
+						</div>
+						<div class="info__result result-info">
+							<div class="result-info__total">
+								<div class="result-info__item">
+									<span class="total">15.3%</span>
+									<span>Зростання впізнаваності</span>
+								</div>
+								<div class="result-info__item">
+									<span class="total">100%</span>
+									<span>Задоволених клієнтів</span>
+								</div>
+								<div class="result-info__item">
+									<span class="total">40.5%</span>
+									<span>Підвищення лояльності</span>
+								</div>
+								<div class="result-info__item">
+									<span class="total">22.03%</span>
+									<span>Зростання конверсій</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+			<section class="section price">
+				<div class="container">
+					<h2 class="title price__title">Ціни</h2>
+
+					<div class="price__list">
+						<div class="price__item item-price">
+							<h3 class="item-price__name">Аудит аккаунту</h3>
+
+							<div class="item-price__price">
+								25-30$
+								<span>2-3 дні</span>
+							</div>
+
+							<ul class="item-price__list">
+								<li>Пошукова, контекстна медіа мережа (KMM, ремаркетинг), Video, Shopping, Discovery, kampanie lokalne, Brandlift, Google Perfomance Max</li>
+								<li>Збільшення охоплень</li>
+								<li>Збільшення продажів</li>
+							</ul>
+
+							<button type="button" class="btn btn-primery item-price__btn">Замовити послугу</button>
+						</div>
+						<div class="price__item item-price">
+							<h3 class="item-price__name">Налаштування аналітики та цілей (GTM, Ads, GA)</h3>
+
+							<div class="item-price__price">
+								50-100$
+								<span>2-5 днів</span>
+							</div>
+
+							<ul class="item-price__list">
+								<li>Пошукова, контекстна медіа мережа (KMM, ремаркетинг), Video, Shopping, Discovery, kampanie lokalne, Brandlift, Google Perfomance Max</li>
+								<li>Збільшення охоплень</li>
+								<li>Збільшення продажів</li>
+							</ul>
+
+							<button type="button" class="btn btn-primery item-price__btn">Замовити послугу</button>
+						</div>
+						<div class="price__item item-price">
+							<h3 class="item-price__name">Контекстна реклама</h3>
+
+							<div class="item-price__price">
+								15% від бюджету
+								<span>3 дні</span>
+							</div>
+
+							<ul class="item-price__list">
+								<li>Пошукова, контекстна медіа мережа (KMM, ремаркетинг), Video, Shopping, Discovery, kampanie lokalne, Brandlift, Google Perfomance Max</li>
+								<li>Збільшення охоплень</li>
+								<li>Збільшення продажів</li>
+							</ul>
+
+							<button type="button" class="btn btn-primery item-price__btn">Замовити послугу</button>
+						</div>
+					</div>
+				</div>
+			</section>
+			<section class="section faq">
+				<div class="container faq__container">
+
+					<h2 class="title faq__title">FAQ</h2>
+
+					<div data-spollers data-one-spoller class="faq__list">
+						<details class="faq__item" open>
+							<summary class="faq__item-title">
+								З чого розпочати?
+								<span class="faq__item-icon"></span>
+							</summary>
+							<div class="faq__item-body">
+								<p>Контекстна реклама дозволяє показувати рекламу тільки тим користувачам, які шукають конкретні товари чи послуги, пов'язані з тим, що пропонується на вашому сайті.</p>
+								<p>Це дозволяє досягти максимальної релевантності рекламного оголошення та підвищити ефективність рекламної кампанії.</p>
+							</div>
+						</details>
+						<details class="faq__item">
+							<summary class="faq__item-title">
+								Як щодо бюджету?
+								<span class="faq__item-icon"></span>
+							</summary>
+							<div class="faq__item-body">Текст</div>
+						</details>
+						<details class="faq__item">
+							<summary class="faq__item-title">
+								Які методи ви використовуєте для просування в Інтернеті?
+								<span class="faq__item-icon"></span>
+							</summary>
+							<div class="faq__item-body">Текст</div>
+						</details>
+						<details class="faq__item">
+							<summary class="faq__item-title">
+								Скільки часу чекати ефекту?
+								<span class="faq__item-icon"></span>
+							</summary>
+							<div class="faq__item-body">Текст</div>
+						</details>
+					</div>
+
+				</div>
+			</section>
+		</main>
+		<footer class="footer">
+			<div class="footer__body">
+				<div class="footer__column">
+					<h2 class="title footer__title">Зроби перший&nbsp;крок</h2>
+				</div>
+				<div class="footer__column">
+					<div class="footer__lang">Ua</div>
+					<div class="footer__group">
+						<a href="tel:+380914810110">+380 914 810 110</a>
+						<p>Ukraine, Ivano-Frankivsk str. Konovaltsia 229y</p>
+						<button type="button" class="btn btn-green">Привіт!</button>
+					</div>
+				</div>
+				<div class="footer__column">
+					<div class="footer__lang">PL</div>
+					<div class="footer__group">
+						<a href="tel:+4880000307">+48 800 003 07</a>
+						<p>Polska, <br> Tarnów, ul.Szkotnik 2B</p>
+						<button type="button" class="btn btn-green">Cześć!</button>
+					</div>
+				</div>
+				<div class="footer__column">
+					<div class="footer__lang">GB</div>
+					<div class="footer__group">
+						<a href="tel:+447458149088">+447 458 149 088</a>
+						<p>United Kingdom, London, 411 Oxford Street, Office 1.01</p>
+						<button type="button" class="btn btn-green">Hello!</button>
+					</div>
+				</div>
+			</div>
+			<div class="footer__bottom">
+				<div class="footer__social social">
+					<a href="" class="social__item">FB</a>
+					<a href="" class="social__item">WA</a>
+					<a href="" class="social__item">IG</a>
+					<a href="" class="social__item">@</a>
+				</div>
+				<button type="button" id="up">
+					<svg width="40" height="48" viewBox="0 0 40 48" xmlns="http://www.w3.org/2000/svg">
+						<g clip-path="url(#clip0_4_5)">
+							<path d="M17.4603 47.7419L16.1905 46.5931C10.3492 41.2317 5.65078 34.8491 2.09522 27.7005C2.09522 27.5729 1.96824 27.5729 1.96824 27.4452C0.698397 24.8922 0.0634766 22.0838 0.0634766 19.1478C0.0634766 8.68035 9.07935 0 20 0C31.0476 0 39.9365 8.68035 39.9365 19.2755C39.9365 29.8706 30.9206 38.551 20 38.551C19.1111 38.551 18.2222 38.551 17.4603 38.4233V47.7419ZM3.36506 26.9346C6.53967 33.4449 10.8571 39.3169 15.9365 44.2953V36.5085L16.8254 36.6362C17.8413 36.7638 18.9841 36.8915 20 36.8915C30.1587 36.8915 38.4127 28.9771 38.4127 19.1478C38.4127 9.31861 30.1587 1.40417 20 1.40417C9.84125 1.40417 1.58729 9.31861 1.58729 19.1478C1.58729 21.9562 2.22221 24.5092 3.36506 26.9346Z" />
+							<g clip-path="url(#clip1_4_5)">
+								<path opacity="0.01" d="M19.5415 11C14.3008 11 10.0523 15.2533 10.0523 20.5C10.0523 25.7467 14.3008 30 19.5415 30C24.7823 30 29.0308 25.7467 29.0308 20.5C29.0308 15.2533 24.7823 11 19.5415 11Z" fill="white" />
+								<path d="M19.5829 28.1528V12.8473" stroke="black" stroke-linecap="square" />
+								<path d="M23.7543 16.401L19.5605 12.3915" stroke="black" stroke-linecap="square" />
+								<path d="M15.28 16.5257L19.4506 12.4919" stroke="black" stroke-linecap="square" />
+							</g>
+						</g>
+					</svg>
+					нагору
+				</button>
+				<div class="footer__policy">
+					<a href="">PRIVACY</a>
+					<a href="">TERMS</a>
+				</div>
+			</div>
+		</footer>
+		<div id="modal" aria-hidden="true" class="modal modal-callback">
+			<div class="modal__wrapper">
+				<div class="modal__content">
+					<button data-close type="button" class="modal__close">
+						<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
+							<path d="M17 1L1 17M1 1L17 17" stroke="#101828" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+						</svg>
+					</button>
+					<div class="modal__body">
+						<h2 class="modal__title">Розкажіть про ваш проект</h2>
+						<form class="form form-modal">
+							<fieldset class="form__fieldset">
+								<div class="form__row">
+									<input autocomplete="off" type="text" placeholder="Ваше ім’я" class="form__input input">
+									<span class="form__row-icon">
+										<svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24" fill="none">
+											<path d="M20.5 18.5C20.5 20.0294 17.0714 21 12.5 21C7.92857 21 4.5 20.0294 4.5 18.5C4.5 16.2692 8.5 15 12.5 15C16.5 15 20.5 16.5 20.5 18.5Z" stroke="#A9A9A9" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+											<path d="M12.5 12C14.9853 12 17 9.98528 17 7.5C17 5.01472 14.9853 3 12.5 3C10.0147 3 8 5.01472 8 7.5C8 9.98528 10.0147 12 12.5 12Z" stroke="#A9A9A9" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+										</svg>
+									</span>
+								</div>
+								<div class="form__row">
+									<input autocomplete="off" type="text" placeholder="Назва компанії" class="form__input input">
+									<span class="form__row-icon">
+										<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+											<path d="M12.9823 2.764C12.631 2.49075 12.4553 2.35412 12.2613 2.3016C12.0902 2.25526 11.9098 2.25526 11.7387 2.3016C11.5447 2.35412 11.369 2.49075 11.0177 2.764L4.23539 8.03912C3.78202 8.39175 3.55534 8.56806 3.39203 8.78886C3.24737 8.98444 3.1396 9.20478 3.07403 9.43905C3 9.70352 3 9.9907 3 10.5651V17.8C3 18.9201 3 19.4801 3.21799 19.908C3.40973 20.2843 3.71569 20.5903 4.09202 20.782C4.51984 21 5.0799 21 6.2 21H8.2C8.48003 21 8.62004 21 8.727 20.9455C8.82108 20.8976 8.89757 20.8211 8.9455 20.727C9 20.62 9 20.48 9 20.2V13.6C9 13.0399 9 12.7599 9.10899 12.546C9.20487 12.3578 9.35785 12.2049 9.54601 12.109C9.75992 12 10.0399 12 10.6 12H13.4C13.9601 12 14.2401 12 14.454 12.109C14.6422 12.2049 14.7951 12.3578 14.891 12.546C15 12.7599 15 13.0399 15 13.6V20.2C15 20.48 15 20.62 15.0545 20.727C15.1024 20.8211 15.1789 20.8976 15.273 20.9455C15.38 21 15.52 21 15.8 21H17.8C18.9201 21 19.4802 21 19.908 20.782C20.2843 20.5903 20.5903 20.2843 20.782 19.908C21 19.4801 21 18.9201 21 17.8V10.5651C21 9.9907 21 9.70352 20.926 9.43905C20.8604 9.20478 20.7526 8.98444 20.608 8.78886C20.4447 8.56806 20.218 8.39175 19.7646 8.03913L12.9823 2.764Z" stroke="#A9A9A9" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+										</svg>
+									</span>
+								</div>
+								<div class="form__row flex-100">
+									<input autocomplete="off" type="text" placeholder="Email" class="form__input input">
+									<span class="form__row-icon">
+										<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+											<path d="M14.6 19.6C13.8 19.9 12.9 20 12 20C7.6 20 4 16.4 4 12C4 7.6 7.6 4 12 4C16.4 4 20 7.6 20 12C20 12.5 20 12.2 20 12.5C19.5 16.5 16.6388 16.6433 15.5 15.2C14.6148 14.0781 15.1 12.5 16.2 9.3M13.0539 8.33156C14.7871 9.05394 15.4859 11.3338 14.6148 13.4238C13.7437 15.5139 11.6326 16.6225 9.89937 15.9002C8.16619 15.1778 7.46734 12.8979 8.33844 10.8079C9.20954 8.71787 11.3207 7.60918 13.0539 8.33156Z" stroke="#A9A9A9" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+										</svg>
+									</span>
+								</div>
+								<div class="form__row flex-100">
+									<input autocomplete="off" type="text" placeholder="Деталі задачі" class="form__input input">
+									<span class="form__row-icon">
+										<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+											<path d="M21.5 18L14.8571 12M9.14286 12L2.50003 18M2 7L10.1649 12.7154C10.8261 13.1783 11.1567 13.4097 11.5163 13.4993C11.8339 13.5785 12.1661 13.5785 12.4837 13.4993C12.8433 13.4097 13.1739 13.1783 13.8351 12.7154L22 7M6.8 20H17.2C18.8802 20 19.7202 20 20.362 19.673C20.9265 19.3854 21.3854 18.9265 21.673 18.362C22 17.7202 22 16.8802 22 15.2V8.8C22 7.11984 22 6.27976 21.673 5.63803C21.3854 5.07354 20.9265 4.6146 20.362 4.32698C19.7202 4 18.8802 4 17.2 4H6.8C5.11984 4 4.27976 4 3.63803 4.32698C3.07354 4.6146 2.6146 5.07354 2.32698 5.63803C2 6.27976 2 7.11984 2 8.8V15.2C2 16.8802 2 17.7202 2.32698 18.362C2.6146 18.9265 3.07354 19.3854 3.63803 19.673C4.27976 20 5.11984 20 6.8 20Z" stroke="#A9A9A9" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+										</svg>
+									</span>
+								</div>
+							</fieldset>
+							<div class="form__row form__row-checkbox">
+								<h4>Оберіть тип роботи:</h4>
+								<div class="form__checkbox">
+									<div class="checkbox">
+										<input id="c_1" data-error="Помилка" class="checkbox__input" type="checkbox" value="1">
+										<label for="c_1" class="checkbox__label"><span class="checkbox__text">Дизайн сайту</span></label>
+									</div>
+									<div class="checkbox">
+										<input id="c_2" data-error="Помилка" class="checkbox__input" type="checkbox" value="1">
+										<label for="c_2" class="checkbox__label"><span class="checkbox__text">Дизайн сайту</span></label>
+									</div>
+								</div>
+							</div>
+							<div class="form__row form__row-button">
+								<button type="submit" class="form__btn btn btn-primery">Замовити консультацію</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="modal" aria-hidden="true" class="modal modal-reviews">
+			<div class="modal__wrapper">
+				<div class="modal__content">
+					<button data-close type="button" class="modal__close">
+						<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
+							<path d="M17 1L1 17M1 1L17 17" stroke="#101828" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+						</svg>
+					</button>
+					<div class="modal__body">
+						<h2 class="modal__title">Залишити відгук</h2>
+						<form class="form form-modal">
+							<fieldset class="form__fieldset">
+								<div class="form__row">
+									<input autocomplete="off" type="text" placeholder="Ваше ім’я" class="form__input input">
+									<span class="form__row-icon">
+										<svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24" fill="none">
+											<path d="M20.5 18.5C20.5 20.0294 17.0714 21 12.5 21C7.92857 21 4.5 20.0294 4.5 18.5C4.5 16.2692 8.5 15 12.5 15C16.5 15 20.5 16.5 20.5 18.5Z" stroke="#A9A9A9" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+											<path d="M12.5 12C14.9853 12 17 9.98528 17 7.5C17 5.01472 14.9853 3 12.5 3C10.0147 3 8 5.01472 8 7.5C8 9.98528 10.0147 12 12.5 12Z" stroke="#A9A9A9" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+										</svg>
+									</span>
+								</div>
+								<div class="form__row">
+									<input autocomplete="off" type="text" placeholder="Назва компанії" class="form__input input">
+									<span class="form__row-icon">
+										<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+											<path d="M12.9823 2.764C12.631 2.49075 12.4553 2.35412 12.2613 2.3016C12.0902 2.25526 11.9098 2.25526 11.7387 2.3016C11.5447 2.35412 11.369 2.49075 11.0177 2.764L4.23539 8.03912C3.78202 8.39175 3.55534 8.56806 3.39203 8.78886C3.24737 8.98444 3.1396 9.20478 3.07403 9.43905C3 9.70352 3 9.9907 3 10.5651V17.8C3 18.9201 3 19.4801 3.21799 19.908C3.40973 20.2843 3.71569 20.5903 4.09202 20.782C4.51984 21 5.0799 21 6.2 21H8.2C8.48003 21 8.62004 21 8.727 20.9455C8.82108 20.8976 8.89757 20.8211 8.9455 20.727C9 20.62 9 20.48 9 20.2V13.6C9 13.0399 9 12.7599 9.10899 12.546C9.20487 12.3578 9.35785 12.2049 9.54601 12.109C9.75992 12 10.0399 12 10.6 12H13.4C13.9601 12 14.2401 12 14.454 12.109C14.6422 12.2049 14.7951 12.3578 14.891 12.546C15 12.7599 15 13.0399 15 13.6V20.2C15 20.48 15 20.62 15.0545 20.727C15.1024 20.8211 15.1789 20.8976 15.273 20.9455C15.38 21 15.52 21 15.8 21H17.8C18.9201 21 19.4802 21 19.908 20.782C20.2843 20.5903 20.5903 20.2843 20.782 19.908C21 19.4801 21 18.9201 21 17.8V10.5651C21 9.9907 21 9.70352 20.926 9.43905C20.8604 9.20478 20.7526 8.98444 20.608 8.78886C20.4447 8.56806 20.218 8.39175 19.7646 8.03913L12.9823 2.764Z" stroke="#A9A9A9" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+										</svg>
+									</span>
+								</div>
+								<div class="form__row flex-100">
+									<input autocomplete="off" type="text" placeholder="Email" class="form__input input">
+									<span class="form__row-icon">
+										<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+											<path d="M14.6 19.6C13.8 19.9 12.9 20 12 20C7.6 20 4 16.4 4 12C4 7.6 7.6 4 12 4C16.4 4 20 7.6 20 12C20 12.5 20 12.2 20 12.5C19.5 16.5 16.6388 16.6433 15.5 15.2C14.6148 14.0781 15.1 12.5 16.2 9.3M13.0539 8.33156C14.7871 9.05394 15.4859 11.3338 14.6148 13.4238C13.7437 15.5139 11.6326 16.6225 9.89937 15.9002C8.16619 15.1778 7.46734 12.8979 8.33844 10.8079C9.20954 8.71787 11.3207 7.60918 13.0539 8.33156Z" stroke="#A9A9A9" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+										</svg>
+									</span>
+								</div>
+								<div class="form__row flex-100">
+									<input autocomplete="off" type="text" placeholder="Деталі задачі" class="form__input input">
+									<span class="form__row-icon">
+										<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+											<path d="M21.5 18L14.8571 12M9.14286 12L2.50003 18M2 7L10.1649 12.7154C10.8261 13.1783 11.1567 13.4097 11.5163 13.4993C11.8339 13.5785 12.1661 13.5785 12.4837 13.4993C12.8433 13.4097 13.1739 13.1783 13.8351 12.7154L22 7M6.8 20H17.2C18.8802 20 19.7202 20 20.362 19.673C20.9265 19.3854 21.3854 18.9265 21.673 18.362C22 17.7202 22 16.8802 22 15.2V8.8C22 7.11984 22 6.27976 21.673 5.63803C21.3854 5.07354 20.9265 4.6146 20.362 4.32698C19.7202 4 18.8802 4 17.2 4H6.8C5.11984 4 4.27976 4 3.63803 4.32698C3.07354 4.6146 2.6146 5.07354 2.32698 5.63803C2 6.27976 2 7.11984 2 8.8V15.2C2 16.8802 2 17.7202 2.32698 18.362C2.6146 18.9265 3.07354 19.3854 3.63803 19.673C4.27976 20 5.11984 20 6.8 20Z" stroke="#A9A9A9" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+										</svg>
+									</span>
+								</div>
+							</fieldset>
+							<div class="form__row form__row-download">
+								<input id="videoInput" type="file">
+								<label for="videoInput">
+									<div class="download-action">
+										<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+											<path d="M8 16L12 12M12 12L16 16M12 12V21M20 16.7428C21.2215 15.734 22 14.2079 22 12.5C22 9.46243 19.5376 7 16.5 7C16.2815 7 16.0771 6.886 15.9661 6.69774C14.6621 4.48484 12.2544 3 9.5 3C5.35786 3 2 6.35786 2 10.5C2 12.5661 2.83545 14.4371 4.18695 15.7935" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+										</svg>
+										<span>Перетягніть сюди відео-відгук або <a href="">відкрийте з файлу</a></span>
+									</div>
+									<div class="download-info">
+										<span>16х9</span><span>MP4, MOV</span><span>Максимум 500MB </span>
+									</div>
+								</label>
+							</div>
+							<div class="form__row form__row-button">
+								<button type="submit" class="form__btn btn btn-primery">Замовити консультацію</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="js/app.min.js?_v=20230804170744"></script>
+</body>
+
+</html>

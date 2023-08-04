@@ -312,6 +312,307 @@
             }
         }
     }
+    class Modal {
+        constructor(options) {
+            let config = {
+                logging: true,
+                init: true,
+                attributeOpenButton: "data-modal",
+                attributeCloseButton: "data-close",
+                fixElementSelector: "[data-lp]",
+                youtubeAttribute: "data-modal-youtube",
+                youtubePlaceAttribute: "data-modal-youtube-place",
+                setAutoplayYoutube: true,
+                classes: {
+                    modal: "modal",
+                    modalContent: "modal__content",
+                    modalActive: "modal_show",
+                    bodyActive: "modal-show"
+                },
+                focusCatch: true,
+                closeEsc: true,
+                bodyLock: true,
+                hashSettings: {
+                    location: true,
+                    goHash: true
+                },
+                on: {
+                    beforeOpen: function() {},
+                    afterOpen: function() {},
+                    beforeClose: function() {},
+                    afterClose: function() {}
+                }
+            };
+            this.youTubeCode;
+            this.isOpen = false;
+            this.targetOpen = {
+                selector: false,
+                element: false
+            };
+            this.previousOpen = {
+                selector: false,
+                element: false
+            };
+            this.lastClosed = {
+                selector: false,
+                element: false
+            };
+            this._dataValue = false;
+            this.hash = false;
+            this._reopen = false;
+            this._selectorOpen = false;
+            this.lastFocusEl = false;
+            this._focusEl = [ "a[href]", 'input:not([disabled]):not([type="hidden"]):not([aria-hidden])', "button:not([disabled]):not([aria-hidden])", "select:not([disabled]):not([aria-hidden])", "textarea:not([disabled]):not([aria-hidden])", "area[href]", "iframe", "object", "embed", "[contenteditable]", '[tabindex]:not([tabindex^="-"])' ];
+            this.options = {
+                ...config,
+                ...options,
+                classes: {
+                    ...config.classes,
+                    ...options?.classes
+                },
+                hashSettings: {
+                    ...config.hashSettings,
+                    ...options?.hashSettings
+                },
+                on: {
+                    ...config.on,
+                    ...options?.on
+                }
+            };
+            this.bodyLock = false;
+            this.options.init ? this.initmodals() : null;
+        }
+        initmodals() {
+            this.modalLogging(`Прокинувся`);
+            this.eventsmodal();
+        }
+        eventsmodal() {
+            document.addEventListener("click", function(e) {
+                const buttonOpen = e.target.closest(`[${this.options.attributeOpenButton}]`);
+                if (buttonOpen) {
+                    e.preventDefault();
+                    this._dataValue = buttonOpen.getAttribute(this.options.attributeOpenButton) ? buttonOpen.getAttribute(this.options.attributeOpenButton) : "error";
+                    this.youTubeCode = buttonOpen.getAttribute(this.options.youtubeAttribute) ? buttonOpen.getAttribute(this.options.youtubeAttribute) : null;
+                    if (this._dataValue !== "error") {
+                        if (!this.isOpen) this.lastFocusEl = buttonOpen;
+                        this.targetOpen.selector = `${this._dataValue}`;
+                        this._selectorOpen = true;
+                        this.open();
+                        return;
+                    } else this.modalLogging(`Йой, не заповнено атрибут у ${buttonOpen.classList}`);
+                    return;
+                }
+                const buttonClose = e.target.closest(`[${this.options.attributeCloseButton}]`);
+                if (buttonClose || !e.target.closest(`.${this.options.classes.modalContent}`) && this.isOpen) {
+                    e.preventDefault();
+                    this.close();
+                    return;
+                }
+            }.bind(this));
+            document.addEventListener("keydown", function(e) {
+                if (this.options.closeEsc && e.which == 27 && e.code === "Escape" && this.isOpen) {
+                    e.preventDefault();
+                    this.close();
+                    return;
+                }
+                if (this.options.focusCatch && e.which == 9 && this.isOpen) {
+                    this._focusCatch(e);
+                    return;
+                }
+            }.bind(this));
+            if (this.options.hashSettings.goHash) {
+                window.addEventListener("hashchange", function() {
+                    if (window.location.hash) this._openToHash(); else this.close(this.targetOpen.selector);
+                }.bind(this));
+                window.addEventListener("load", function() {
+                    if (window.location.hash) this._openToHash();
+                }.bind(this));
+            }
+        }
+        open(selectorValue) {
+            if (bodyLockStatus) {
+                this.bodyLock = document.documentElement.classList.contains("lock") && !this.isOpen ? true : false;
+                if (selectorValue && typeof selectorValue === "string" && selectorValue.trim() !== "") {
+                    this.targetOpen.selector = selectorValue;
+                    this._selectorOpen = true;
+                }
+                if (this.isOpen) {
+                    this._reopen = true;
+                    this.close();
+                }
+                if (!this._selectorOpen) this.targetOpen.selector = this.lastClosed.selector;
+                if (!this._reopen) this.previousActiveElement = document.activeElement;
+                this.targetOpen.element = document.querySelector(this.targetOpen.selector);
+                if (this.targetOpen.element) {
+                    if (this.youTubeCode) {
+                        const codeVideo = this.youTubeCode;
+                        const urlVideo = `https://www.youtube.com/embed/${codeVideo}?rel=0&showinfo=0&autoplay=1`;
+                        const iframe = document.createElement("iframe");
+                        iframe.setAttribute("allowfullscreen", "");
+                        const autoplay = this.options.setAutoplayYoutube ? "autoplay;" : "";
+                        iframe.setAttribute("allow", `${autoplay}; encrypted-media`);
+                        iframe.setAttribute("src", urlVideo);
+                        if (!this.targetOpen.element.querySelector(`[${this.options.youtubePlaceAttribute}]`)) {
+                            this.targetOpen.element.querySelector(".modal__text").setAttribute(`${this.options.youtubePlaceAttribute}`, "");
+                        }
+                        this.targetOpen.element.querySelector(`[${this.options.youtubePlaceAttribute}]`).appendChild(iframe);
+                    }
+                    if (this.options.hashSettings.location) {
+                        this._getHash();
+                        this._setHash();
+                    }
+                    this.options.on.beforeOpen(this);
+                    document.dispatchEvent(new CustomEvent("beforemodalOpen", {
+                        detail: {
+                            modal: this
+                        }
+                    }));
+                    this.targetOpen.element.classList.add(this.options.classes.modalActive);
+                    document.documentElement.classList.add(this.options.classes.bodyActive);
+                    if (!this._reopen) !this.bodyLock ? bodyLock() : null; else this._reopen = false;
+                    this.targetOpen.element.setAttribute("aria-hidden", "false");
+                    this.previousOpen.selector = this.targetOpen.selector;
+                    this.previousOpen.element = this.targetOpen.element;
+                    this._selectorOpen = false;
+                    this.isOpen = true;
+                    setTimeout((() => {
+                        this._focusTrap();
+                    }), 50);
+                    this.options.on.afterOpen(this);
+                    document.dispatchEvent(new CustomEvent("aftermodalOpen", {
+                        detail: {
+                            modal: this
+                        }
+                    }));
+                    this.modalLogging(`Відкрив попап`);
+                } else this.modalLogging(`Йой, такого попапу немає. Перевірте коректність введення. `);
+            }
+        }
+        close(selectorValue) {
+            if (selectorValue && typeof selectorValue === "string" && selectorValue.trim() !== "") this.previousOpen.selector = selectorValue;
+            if (!this.isOpen || !bodyLockStatus) return;
+            this.options.on.beforeClose(this);
+            document.dispatchEvent(new CustomEvent("beforemodalClose", {
+                detail: {
+                    modal: this
+                }
+            }));
+            if (this.youTubeCode) if (this.targetOpen.element.querySelector(`[${this.options.youtubePlaceAttribute}]`)) this.targetOpen.element.querySelector(`[${this.options.youtubePlaceAttribute}]`).innerHTML = "";
+            this.previousOpen.element.classList.remove(this.options.classes.modalActive);
+            this.previousOpen.element.setAttribute("aria-hidden", "true");
+            if (!this._reopen) {
+                document.documentElement.classList.remove(this.options.classes.bodyActive);
+                !this.bodyLock ? bodyUnlock() : null;
+                this.isOpen = false;
+            }
+            this._removeHash();
+            if (this._selectorOpen) {
+                this.lastClosed.selector = this.previousOpen.selector;
+                this.lastClosed.element = this.previousOpen.element;
+            }
+            this.options.on.afterClose(this);
+            document.dispatchEvent(new CustomEvent("aftermodalClose", {
+                detail: {
+                    modal: this
+                }
+            }));
+            setTimeout((() => {
+                this._focusTrap();
+            }), 50);
+            this.modalLogging(`Закрив попап`);
+        }
+        _getHash() {
+            if (this.options.hashSettings.location) this.hash = this.targetOpen.selector.includes("#") ? this.targetOpen.selector : this.targetOpen.selector.replace(".", "#");
+        }
+        _openToHash() {
+            let classInHash = document.querySelector(`.${window.location.hash.replace("#", "")}`) ? `.${window.location.hash.replace("#", "")}` : document.querySelector(`${window.location.hash}`) ? `${window.location.hash}` : null;
+            const buttons = document.querySelector(`[${this.options.attributeOpenButton} = "${classInHash}"]`) ? document.querySelector(`[${this.options.attributeOpenButton} = "${classInHash}"]`) : document.querySelector(`[${this.options.attributeOpenButton} = "${classInHash.replace(".", "#")}"]`);
+            this.youTubeCode = buttons.getAttribute(this.options.youtubeAttribute) ? buttons.getAttribute(this.options.youtubeAttribute) : null;
+            if (buttons && classInHash) this.open(classInHash);
+        }
+        _setHash() {
+            history.pushState("", "", this.hash);
+        }
+        _removeHash() {
+            history.pushState("", "", window.location.href.split("#")[0]);
+        }
+        _focusCatch(e) {
+            const focusable = this.targetOpen.element.querySelectorAll(this._focusEl);
+            const focusArray = Array.prototype.slice.call(focusable);
+            const focusedIndex = focusArray.indexOf(document.activeElement);
+            if (e.shiftKey && focusedIndex === 0) {
+                focusArray[focusArray.length - 1].focus();
+                e.preventDefault();
+            }
+            if (!e.shiftKey && focusedIndex === focusArray.length - 1) {
+                focusArray[0].focus();
+                e.preventDefault();
+            }
+        }
+        _focusTrap() {
+            const focusable = this.previousOpen.element.querySelectorAll(this._focusEl);
+            if (!this.isOpen && this.lastFocusEl) this.lastFocusEl.focus(); else focusable[0].focus();
+        }
+        modalLogging(message) {
+            this.options.logging ? functions_FLS(`[Попапос]: ${message}`) : null;
+        }
+    }
+    modules_flsModules.modal = new Modal({});
+    class MousePRLX {
+        constructor(props, data = null) {
+            let defaultConfig = {
+                init: true,
+                logging: true
+            };
+            this.config = Object.assign(defaultConfig, props);
+            if (this.config.init) {
+                const paralaxMouse = document.querySelectorAll("[data-prlx-mouse]");
+                if (paralaxMouse.length) {
+                    this.paralaxMouseInit(paralaxMouse);
+                    this.setLogging(`Прокинувся, стежу за об'єктами: (${paralaxMouse.length})`);
+                } else this.setLogging("Немає жодного обєкта. Сплю...");
+            }
+        }
+        paralaxMouseInit(paralaxMouse) {
+            paralaxMouse.forEach((el => {
+                const paralaxMouseWrapper = el.closest("[data-prlx-mouse-wrapper]");
+                const paramСoefficientX = el.dataset.prlxCx ? +el.dataset.prlxCx : 100;
+                const paramСoefficientY = el.dataset.prlxCy ? +el.dataset.prlxCy : 100;
+                const directionX = el.hasAttribute("data-prlx-dxr") ? -1 : 1;
+                const directionY = el.hasAttribute("data-prlx-dyr") ? -1 : 1;
+                const paramAnimation = el.dataset.prlxA ? +el.dataset.prlxA : 50;
+                let positionX = 0, positionY = 0;
+                let coordXprocent = 0, coordYprocent = 0;
+                setMouseParallaxStyle();
+                if (paralaxMouseWrapper) mouseMoveParalax(paralaxMouseWrapper); else mouseMoveParalax();
+                function setMouseParallaxStyle() {
+                    const distX = coordXprocent - positionX;
+                    const distY = coordYprocent - positionY;
+                    positionX += distX * paramAnimation / 1e3;
+                    positionY += distY * paramAnimation / 1e3;
+                    el.style.cssText = `transform: translate3D(${directionX * positionX / (paramСoefficientX / 10)}%,${directionY * positionY / (paramСoefficientY / 10)}%,0) rotate(0.02deg);`;
+                    requestAnimationFrame(setMouseParallaxStyle);
+                }
+                function mouseMoveParalax(wrapper = window) {
+                    wrapper.addEventListener("mousemove", (function(e) {
+                        const offsetTop = el.getBoundingClientRect().top + window.scrollY;
+                        if (offsetTop >= window.scrollY || offsetTop + el.offsetHeight >= window.scrollY) {
+                            const parallaxWidth = window.innerWidth;
+                            const parallaxHeight = window.innerHeight;
+                            const coordX = e.clientX - parallaxWidth / 2;
+                            const coordY = e.clientY - parallaxHeight / 2;
+                            coordXprocent = coordX / parallaxWidth * 100;
+                            coordYprocent = coordY / parallaxHeight * 100;
+                        }
+                    }));
+                }
+            }));
+        }
+        setLogging(message) {
+            this.config.logging ? functions_FLS(`[PRLX Mouse]: ${message}`) : null;
+        }
+    }
+    modules_flsModules.mousePrlx = new MousePRLX({});
     function isObject(obj) {
         return obj !== null && typeof obj === "object" && "constructor" in obj && obj.constructor === Object;
     }
@@ -3466,6 +3767,18 @@
                 }
             });
         }
+        if (document.querySelector(".case-slider__slider")) new swiper_core_Swiper(".case-slider__slider", {
+            modules: [ Navigation, Manipulation ],
+            observer: true,
+            observeParents: true,
+            slidesPerView: 1,
+            spaceBetween: 10,
+            speed: 800,
+            navigation: {
+                prevEl: ".case-slider__button-prev",
+                nextEl: ".case-slider__button-next"
+            }
+        });
     }
     window.addEventListener("load", (function(e) {
         initSliders();
@@ -3598,6 +3911,58 @@
         }
         document.addEventListener("watcherCallback", digitsCounterAction);
     }
+    function stickyBlock() {
+        if (window.innerWidth > 768) {
+            addWindowScrollEvent = true;
+            function stickyBlockInit() {
+                const stickyParents = document.querySelectorAll("[data-sticky]");
+                if (stickyParents.length) stickyParents.forEach((stickyParent => {
+                    let stickyConfig = {
+                        media: stickyParent.dataset.sticky ? parseInt(stickyParent.dataset.sticky) : null,
+                        top: stickyParent.dataset.stickyTop ? parseInt(stickyParent.dataset.stickyTop) : 0,
+                        bottom: stickyParent.dataset.stickyBottom ? parseInt(stickyParent.dataset.stickyBottom) : 0,
+                        header: stickyParent.hasAttribute("data-sticky-header") ? document.querySelector("header.header").offsetHeight : 0
+                    };
+                    stickyBlockItem(stickyParent, stickyConfig);
+                }));
+            }
+            function stickyBlockItem(stickyParent, stickyConfig) {
+                const stickyBlockItem = stickyParent.querySelector("[data-sticky-item]");
+                const headerHeight = stickyConfig.header;
+                const offsetTop = headerHeight + stickyConfig.top;
+                const startPoint = stickyBlockItem.getBoundingClientRect().top + scrollY - offsetTop;
+                document.addEventListener("windowScroll", stickyBlockActions);
+                function stickyBlockActions(e) {
+                    const endPoint = stickyParent.offsetHeight + stickyParent.getBoundingClientRect().top + scrollY - (offsetTop + stickyBlockItem.offsetHeight + stickyConfig.bottom);
+                    let stickyItemValues = {
+                        position: "relative",
+                        bottom: "auto",
+                        top: "0px",
+                        left: "0px",
+                        width: "auto"
+                    };
+                    if (!stickyConfig.media || stickyConfig.media < window.innerWidth) if (offsetTop + stickyConfig.bottom + stickyBlockItem.offsetHeight < window.innerHeight) if (scrollY >= startPoint && scrollY <= endPoint) {
+                        stickyItemValues.position = `fixed`;
+                        stickyItemValues.bottom = `auto`;
+                        stickyItemValues.top = `${offsetTop}px`;
+                        stickyItemValues.left = `${stickyBlockItem.getBoundingClientRect().left}px`;
+                        stickyItemValues.width = `${stickyBlockItem.offsetWidth}px`;
+                    } else if (scrollY >= endPoint) {
+                        stickyItemValues.position = `absolute`;
+                        stickyItemValues.bottom = `${stickyConfig.bottom}px`;
+                        stickyItemValues.top = `auto`;
+                        stickyItemValues.left = `0px`;
+                        stickyItemValues.width = `${stickyBlockItem.offsetWidth}px`;
+                    }
+                    stickyBlockType(stickyBlockItem, stickyItemValues);
+                }
+            }
+            function stickyBlockType(stickyBlockItem, stickyItemValues) {
+                stickyBlockItem.style.cssText = `position:${stickyItemValues.position};bottom:${stickyItemValues.bottom};top:${stickyItemValues.top};left:${stickyItemValues.left};width:${stickyItemValues.width};`;
+            }
+            stickyBlockInit();
+        }
+    }
     setTimeout((() => {
         if (addWindowScrollEvent) {
             let windowScroll = new Event("windowScroll");
@@ -3719,10 +4084,10 @@
     }
     setLogoForMobileScreen();
     window.addEventListener("resize", setLogoForMobileScreen);
-    function СlippedText() {
-        const clippedLines = document.querySelectorAll(".clipped-line");
-        document.querySelector(".clipped-line-top"), document.querySelector(".clipped-line-bottom");
-        clippedLines.forEach((line => {
+    function marqueeText() {
+        const marqueeLines = document.querySelectorAll(".marquee-line");
+        document.querySelector(".marquee-line-top"), document.querySelector(".marquee-line-bottom");
+        marqueeLines.forEach((line => {
             const lineWidth = line.offsetWidth, text1 = "INJEER", text2 = "DIGITAL", icon = '<svg xmlns="http://www.w3.org/2000/svg" width="42" height="29" viewBox="0 0 42 29" fill="none"><g><path d="M28.1599 28.1922C20.9599 28.1922 15.1999 22.053 15.1999 14.4596C15.1999 13.6518 15.2799 12.844 15.3599 12.117H9.35986C13.0399 8.07803 17.5199 4.68527 22.4799 2.18109C22.4799 2.18109 22.5599 2.18109 22.5599 2.10031C24.2399 1.21173 26.1599 0.727051 28.1599 0.727051C35.3599 0.727051 41.1999 6.86633 41.1999 14.4596C41.1999 22.053 35.3599 28.1922 28.1599 28.1922Z" stroke="black" stroke-width="2" stroke-miterlimit="10"/><path d="M13.8398 0.807739C21.0398 0.807739 26.7998 6.94702 26.7998 14.5403C26.7998 15.3481 26.7198 16.1559 26.6398 16.8829H32.6398C28.9598 21.0027 24.4798 24.3955 19.5198 26.8189C19.5198 26.8189 19.4398 26.8189 19.4398 26.8997C17.7598 27.7882 15.8398 28.2729 13.8398 28.2729C6.6398 28.1921 0.799805 22.0529 0.799805 14.5403C0.799805 6.94702 6.6398 0.807739 13.8398 0.807739Z" stroke="black" stroke-width="2" stroke-miterlimit="10"/></g></svg>';
             function getWidth(content) {
                 const tempSpan = document.createElement("span");
@@ -3745,9 +4110,9 @@
         }));
         function handleScroll() {
             const scrollAmount = window.scrollY / 15;
-            clippedLines.forEach((line => {
-                const isTopLine = line.classList.contains("clipped-line-top");
-                const isBottomLine = line.classList.contains("clipped-line-bottom");
+            marqueeLines.forEach((line => {
+                const isTopLine = line.classList.contains("marquee-line-top");
+                const isBottomLine = line.classList.contains("marquee-line-bottom");
                 if (isTopLine) {
                     const spans = line.querySelectorAll("span");
                     spans.forEach((span => {
@@ -3763,12 +4128,41 @@
         }
         window.addEventListener("scroll", handleScroll);
     }
-    СlippedText();
-    window.addEventListener("resize", СlippedText);
-    window["FLS"] = true;
+    marqueeText();
+    window.addEventListener("resize", marqueeText);
+    const spans = document.querySelectorAll(".cases-hero__specialization span");
+    const colors = [ "#D7CEFD", "#A2F4FA", "#DBFF73", "#F9C6E1" ];
+    if (spans) for (let i = 0; i < spans.length; i++) {
+        const colorIndex = i % colors.length;
+        spans[i].style.color = colors[colorIndex];
+    }
+    const reviewsBgElements = document.querySelectorAll(".reviews-bg");
+    const colorsBg = [ "#DBFF73", "#D7CEFD", "#F9C6E1", "#A2F4FA" ];
+    for (let i = 0; i < reviewsBgElements.length; i++) {
+        const colorIndex = i % colorsBg.length;
+        reviewsBgElements[i].style.backgroundColor = colorsBg[colorIndex];
+    }
+    const videoInput = document.getElementById("videoInput");
+    if (videoInput) {
+        videoInput.addEventListener("change", (function() {
+            const file = videoInput.files[0];
+            if (file) {
+                const fileSize = file.size / 1024 / 1024;
+                const maxFileSize = 500;
+                if (fileSize > maxFileSize) displayMessage("Розмір відео не повинен перевищувати 500MB.", false); else displayMessage(file.name, fileSize.toFixed(2) + " MB", true);
+            } else displayMessage("<span>16х9</span><span>MP4, MOV</span><span>Максимум 500MB </span>", false);
+        }));
+        function displayMessage(name, size, isSuccess) {
+            const downloadInfo = document.querySelector(".download-info");
+            downloadInfo.innerHTML = `<span>${name}</span>${size}`;
+            if (isSuccess) downloadInfo.classList.add("success"); else downloadInfo.classList.remove("success");
+        }
+    }
+    window["FLS"] = false;
     isWebp();
     addTouchClass();
     menuInit();
+    stickyBlock();
     spollers();
     digitsCounter();
 })();
